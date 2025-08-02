@@ -1,0 +1,40 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: My New Hugo Site
+theme: hugo-book
+ignoreLogs: ["warning-goldmark-raw-html"]
+disqusShortname: "my-site"
+disablePathToLower: true
+enableGitInfo: true
+
+disableKinds:
+  - taxonomy
+
+# Hugo Book theme params
+params:
+  BookTheme: "light"
+  BookToC: true
+  BookLogo: "logo.png"
+  BookFavicon: "favicon.png"
+  BookSection: "docs" # or "*" for all sections
+  BookRepo: "https://github.com/alex-shpak/hugo-book"
+  BookCommitPath: "commit"
+  BookEditPath: "edit/master/exampleSite"
+  BookDateFormat: "Jan 2, 2006"
+  BookSearch: true
+  BookComments: true
+  BookPortableLinks: true
+  BookServiceWorker: true
+
+# Multilingual support
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    contentDir: "content/en"
+    title: "My New Hugo Site"
+  fr:
+    languageName: "Français"
+    weight: 2
+    contentDir: "content/fr"
+    title: "Mon Nouveau Site Hugo"
