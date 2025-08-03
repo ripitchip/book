@@ -17,8 +17,6 @@ build:hugo:
   stage: build
   before_script:
     - git submodule update --init --recursive
-    - mkdir -p layouts/partials
-    - echo '{{/* dummy GA partial */}}' > layouts/partials/google_analytics.html
   script:
     - hugo --minify
   artifacts:
