@@ -4,7 +4,7 @@ services:
   - docker:dind
 
 variables:
-  IMAGE_NAME: registry.gitlab.com/ripitchip/new-portfolio
+  IMAGE_NAME: registry.gitlab.com/ripitchip/book
   DOCKER_TLS_CERTDIR: ""
 
 stages:
