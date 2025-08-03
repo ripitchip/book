@@ -1,0 +1,45 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  IMAGE_NAME: registry.gitlab.com/ripitchip/new-portfolio
+  DOCKER_TLS_CERTDIR: ""
+
+stages:
+  - build
+  - dockerize
+
+# STEP 1: Hugo build using latest PaperMod-compatible image
+build:hugo:
+  image: hugomods/hugo:nightly
+  stage: build
+  before_script:
+    - git submodule update --init --recursive
+    - mkdir -p layouts/partials
+    - echo '{{/* dummy GA partial */}}' > layouts/partials/google_analytics.html
+  script:
+    - hugo --minify
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
+  only:
+    - main
+
+# STEP 2: Dockerize static site using only NGINX
+docker:nginx:
+  image: docker:latest
+  stage: dockerize
+  dependencies:
+    - build:hugo
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  script:
+    - mkdir -p docker/public
+    - cp -r public/* docker/public/
+    - docker build -t "$IMAGE_NAME:latest" -f docker/Dockerfile docker/
+    - docker push "$IMAGE_NAME:latest"
+  only:
+    - main

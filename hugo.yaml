@@ -1,22 +1,27 @@
-baseURL: https://example.org/
-languageCode: en-us
-title: My New Hugo Site
-theme: hugo-book
-ignoreLogs: ["warning-goldmark-raw-html"]
-disqusShortname: "my-site"
+baseURL: "https://yourdomain.com/" # Replace with your real domain
+languageCode: "en-us"
+title: "My New Hugo Site"
+theme: "hugo-book"
+
+# Suppress raw HTML Goldmark warnings
+ignoreLogs:
+  - "warning-goldmark-raw-html"
+
+# disqusShortname: "my-site"
 disablePathToLower: true
 enableGitInfo: true
 
+# Disable unused output types
 disableKinds:
   - taxonomy
 
-# Hugo Book theme params
+# Theme-specific parameters
 params:
   BookTheme: "light"
   BookToC: true
-  BookLogo: "logo.png"
+  BookLogo: "mypatch.png"
   BookFavicon: "favicon.png"
-  BookSection: "docs" # or "*" for all sections
+  BookSection: "docs" # Or "*" for all sections
   BookRepo: "https://github.com/alex-shpak/hugo-book"
   BookCommitPath: "commit"
   BookEditPath: "edit/master/exampleSite"
@@ -32,9 +37,9 @@ languages:
     languageName: "English"
     weight: 1
     contentDir: "content/en"
-    title: "My New Hugo Site"
+    title: "My Book"
   fr:
     languageName: "Français"
     weight: 2
     contentDir: "content/fr"
-    title: "Mon Nouveau Site Hugo"
+    title: "Mon livre"
